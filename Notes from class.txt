@@ -1,0 +1,9 @@
+* LateUpdate: gets called after the regular updates have finished. Mainly used for camera orientation. 
+
+* Vector3 adjustedPos = new Vector3(_targetPos.x, transform.position.y, _targetPos.z) // this is making sure the player stays on the ground. 
+* Quaternion targetRot = Quaternion.LookRotation(adjustedPos - transform.position) // passing in a vector, from where I am at to where I want to go. This gives you back a rotation that will point at the destination. "I want this vector to become your new forward direction"
+* transfrom.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotSpeed * Time.deltaTime) // the difference between slerp and lerp is slerp is a spherical lerp. "Imagine you are in a sphere, I want to go from this point on the sphere and rotate to this other point" Slerp takes starting rotation, and the target rotation, and the third param is a percentage that is a measure on how much time is passed, but this is not what the book is doing. The book is not using the params correctly, but it works because he is updating the current rotation every frame. 
+* Vector3.Distance(a, b) // this gives the distance between 2 points
+* GameObject.FindWithTag("Player") // this will return the object that has this specific tag, BUT this will take time to run. Use this if you know it wont take much time to run. This is an efficiency thing. 
+* Vector3.Dot(player.forward, direction) // player.forward gets the forward direction relative to the world, and Dot is the dot product. If 2 vectors are facing the same direction it returns a 1, and if they are oposite it returns a -1. So if I am close to facing this, the Dot will return something similar to an angle and the closer to 1 it is, I am probably looking at the object. 
+* delegates are just like a pointer to a function. 
